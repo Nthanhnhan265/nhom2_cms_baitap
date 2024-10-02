@@ -21,7 +21,12 @@ function enqueue_custom_js() {
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_js');
 
-function University_features(){
+function university_features() {
+    register_nav_menu('headerMenuLocation', 'Header Menu Location');
+    register_nav_menu('footerExploreMenu', 'Footer Explore Menu');
+    register_nav_menu('footerLearnMenu', 'Footer Learn Menu');
     add_theme_support('title-tag');
 }
-add_action('after_setup_theme','University_features');
+
+add_action('after_setup_theme', 'university_features');
+
