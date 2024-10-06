@@ -30,3 +30,11 @@ function university_features() {
 
 add_action('after_setup_theme', 'university_features');
 
+
+function wp_custom_body_class( $classes ) {
+    if ( is_single() ) {
+        $classes[] = 'single-post-view';
+    }
+    return $classes;
+}
+add_filter( 'body_class', 'wp_custom_body_class' );
