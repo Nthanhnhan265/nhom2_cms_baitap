@@ -32,8 +32,17 @@ add_action('after_setup_theme', 'university_features');
 
 
 function wp_custom_body_class( $classes ) {
-    if ( is_single() ) {
+    if (is_user_logged_in()) {
+        $classes[] = 'user-logged-in';
+    }
+    if (is_front_page()) {
+        $classes[] = 'home-page';
+    } elseif (is_single()) {
         $classes[] = 'single-post-view';
+        $categories = get_the_category();
+        if (!empty($categories)) {
+            $classes[] = 'category-' . $categories[0]->slug;
+        }
     }
     return $classes;
 }
